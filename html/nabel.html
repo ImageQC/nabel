@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Plot NABEL data</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for nabel {nabel}"><tr><td>nabel {nabel}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Plot NABEL data</h2>
+
+<h3>Description</h3>
+
+<p>The National Air Pollution Monitoring Network (NABEL) provides time series data
+on air-borne pollutant concentrations from a network of measurement stations across
+Switzerland. The data can be queried with an HTML form (see sources). This is a
+simple function that serves as a wrapper for that HTML form. Its main purpose
+is to demonstrate some of the capabilities of <a href="http://opencpu.org/">http://opencpu.org/</a> by
+Jeroen Ooms.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+nabel(pollutant = c("o3", "no2", "so2", "co", "nmvoc", "pm10", "pm1", "cpc",
+  "temp", "prec", "rad"), stations = c("Bern-Bollwerk", "Lausanne-César-Roux",
+  "Lugano-Università", "Zürich-Kaserne", "Basel-Binningen", "Dübendorf-Empa",
+  "Härkingen-A1", "Sion-Aéroport-A9", "Magadino-Cadenazzo", "Payerne",
+  "Tänikon", "Lägeren", "Chaumont", "Rigi-Seebodenalp", "Davos-Seehornwald",
+  "Jungfraujoch"), interval = c("hourly", "daily"), period = c("day",
+  "week", "month", "free"), from = NULL, to = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>pollutant</code></td>
+<td>
+<p>pollutant or meteorological variable to plot</p>
+</td></tr>
+<tr valign="top"><td><code>stations</code></td>
+<td>
+<p>measurement stations (either by number or name) to include</p>
+</td></tr>
+<tr valign="top"><td><code>interval</code></td>
+<td>
+<p>plot <code>hourly</code> or <code>daily</code> means</p>
+</td></tr>
+<tr valign="top"><td><code>period</code></td>
+<td>
+<p>time series period</p>
+</td></tr>
+<tr valign="top"><td><code>from</code></td>
+<td>
+<p>start day of time series period (if <code>period = "free"</code>)</p>
+</td></tr>
+<tr valign="top"><td><code>to</code></td>
+<td>
+<p>end day of time series period (if <code>period = "free"</code>)</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>A single <code>pollutant</code> or meteorological variable is plotted
+(default is <code>o3</code>):
+</p>
+
+<ol>
+<li><p> o3 (Ozone (O3))
+</p>
+</li>
+<li><p> no2 (Nitrogen dioxide (NO2))
+</p>
+</li>
+<li><p> so2 (Sulfur dioxide (SO2))
+</p>
+</li>
+<li><p> co (Carbon monoxide (CO))
+</p>
+</li>
+<li><p> nmvoc (Non-methane volatile organic compounds (NMVOC))
+</p>
+</li>
+<li><p> pm10 (Particulate matter (PM10))
+</p>
+</li>
+<li><p> pm1 (Particulate matter (PM1))
+</p>
+</li>
+<li><p> cpc (Particulate number concentration (CPC))
+</p>
+</li>
+<li><p> temp (Temperature (TEMP))
+</p>
+</li>
+<li><p> prec (Precipitation (PREC))
+</p>
+</li>
+<li><p> rad (Global radiation (RAD))
+</p>
+</li></ol>
+
+<p>One or several measurement <code>stations</code> have to be included
+(default is to include all 16):
+</p>
+
+<ol>
+<li><p> Bern-Bollwerk
+</p>
+</li>
+<li><p> Lausanne-CÃ©sar-Roux
+</p>
+</li>
+<li><p> Lugano-UniversitÃ 
+</p>
+</li>
+<li><p> ZÃ¼rich-Kaserne
+</p>
+</li>
+<li><p> Basel-Binningen
+</p>
+</li>
+<li><p> DÃ¼bendorf-Empa
+</p>
+</li>
+<li><p> HÃ¤rkingen-A1
+</p>
+</li>
+<li><p> Sion-AÃ©roport-A9
+</p>
+</li>
+<li><p> Magadino-Cadenazzo
+</p>
+</li>
+<li><p> Payerne
+</p>
+</li>
+<li><p> TÃ¤nikon
+</p>
+</li>
+<li><p> LÃ¤geren
+</p>
+</li>
+<li><p> Chaumont
+</p>
+</li>
+<li><p> Rigi-Seebodenalp
+</p>
+</li>
+<li><p> Davos-Seehornwald
+</p>
+</li>
+<li><p> Jungfraujoch
+</p>
+</li></ol>
+
+<p>For the time series measurement <code>interval</code>, you have a choice
+between <code>hourly</code> and <code>daily</code> means
+(default is <code>hourly</code>).
+</p>
+<p>The depicted time <code>period</code> can be the last <code>day</code>, <code>week</code>,
+<code>month</code>, or you can <code>free</code>ly choose the period by specifying
+a start date with <code>from</code> and an end date with <code>to</code> (both need
+to be given in a format that can be converted to an object of class
+<code>Date</code> with <code>as.Date()</code> - e.g. in ISO 8601 format, i.e.
+YYYY-MM-DD).
+</p>
+
+
+<h3>Value</h3>
+
+<p>none (invisible <code>NULL</code>)
+</p>
+
+
+<h3>Note</h3>
+
+<p>Not all pollutants are measured at all stations.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Thomas Zumbrunn (<a href="http://thomas.zumbrunn.name/">http://thomas.zumbrunn.name/</a>)
+</p>
+
+
+<h3>Source</h3>
+
+<p><a href="http://www.empa.ch/nabel/">http://www.empa.ch/nabel/</a> and
+<a href="https://www.bafu.admin.ch/bafu/en/home/topics/air/state/data/data-query-nabel.html">https://www.bafu.admin.ch/bafu/en/home/topics/air/state/data/data-query-nabel.html</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## plot daily mean NO2 concentrations at three stations
+## from 1 January 2011 up to today
+## Not run: 
+nabel("no2",
+      c("Bern", "Basel", "Lausanne"),
+      "daily",
+      "free",
+      "2011-01-01",
+      Sys.Date())
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>nabel</em> version 1.1 <a href="00Index.html">Index</a>]</div>
+</body></html>
